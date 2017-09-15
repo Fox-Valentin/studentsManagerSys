@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  <form action="/doAdd" method="get">
+    <div>
+      sid:<input type="text" name="sid" value="">
+    </div>
+    <div>
+      name:<input type="text" name="name" value="">
+    </div>
+    <div>
+      gender:
+      <input type="radio" name="gender" value="true">
+      <input type="radio" name="gender" value="fasle">
+    </div>
+    <div>
+      courses:
+      <% for (var i = 0; i < courses.length; i ++) {%>
+        <%=courses[i].name%><input type="checkbox" name="courses" value="<%=courses[i].cid%>">
+      <%}%>
+    </div>
+    <button type="submit">submit</button>
+  </form>
+  </body>
+</html>
