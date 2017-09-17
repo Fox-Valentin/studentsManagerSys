@@ -6,16 +6,26 @@ exports.showAdd = showAdd
 exports.doAdd = doAdd
 function showIndex (req,res){
   StudentModel.findAll((result) => {
-    result.courses.each((item) => {
-      console.log(item)
-    })
-      // CourseModel.find({cid:item},function(err,result){
-      //   if (err) {
-      //     throw
-      //   }
-      //   console.log(result)
-      // })
-    res.render("index",{students:result})
+    var resultAty = []
+    for (var i = 0; i < result.length; i++){
+      resultAty[i] = []
+      for (var j = 0; j < result[i].courses.length; j++){
+        (function iterator(result,l,k){
+          if (k >= result.courses.length) {
+            return
+          }
+          CourseModel.find({cid:result.courses[k]},function(err,data){
+            if(err){
+              throw err
+            }
+            resultAty[l].push(data[0].name)
+            iterator(result,l,++k)
+          })
+        })(result[i],i,j)
+        console.log(resultAty)
+      }
+    }
+    res.send(resultAty)
   })
 }
 
