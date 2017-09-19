@@ -31,6 +31,7 @@ function showIndex (req,res){
 
 function showCourses (req,res){
   CourseModel.findAll((result) => {
+    var name = CourseModel.findNameByCid(result[0].courses[0])
     res.send(result)
   })
 }

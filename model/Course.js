@@ -14,5 +14,8 @@ courseSchema.statics.findAll = function(callback){
     callback(result)
   })
 }
+courseSchema.statics.findNameByCid = function(cid,callback){
+  return this.find({cid:cid},callback)
+}
 var CourseModel = mongoose.model('CourseModel',courseSchema)
 module.exports =  CourseModel
